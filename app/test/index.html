@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Lighthouse Reporting Examples</title>
+  </head>
+
+  <body>
+    <div>
+      <form>
+        <b>Website</b><br>
+        <input id="target" style="font-size: 18px; width: 400px" value="http://www.example.com"> <input type="button" onclick="formHandler()" value="Generate Report">
+      </form>
+    </div>
+    <div style="min-height: 300px; border: 1px solid #AEAEAE; margin-top: 25px; padding: 10px">
+      <pre id="response">
+      
+      </pre>
+    </div>
+  </body>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script>
+    function formHandler() {
+      var results = [];
+      var target   = document.getElementById('target').value;
+      
+      axios.post('http://localhost:3000/report', { url: target }).then(payload => {
+        var response = payload.data;
+        var keys = Object.keys(response.audits);
+        
+        keys.forEach(key => {
+          let row = response.audits[key];
+          results.push({
+            id: row.id,
+            title: row.title,
+            description: row.description,
+            score: row.score,
+            scoreDisplayMode: row.scoreDisplayMode,
+            rawValue: row.rawValue
+          });
+        });
+        
+        console.log(results);
+      });
+    }
+  </script>
+</html>

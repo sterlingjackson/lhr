@@ -1,0 +1,16 @@
+{
+  "name": "lighthouse-reporting",
+  "version": "1.0.0",
+  "description": "A simple ExpressJS API that integrates Google Lighthouse for website audits.",
+  "main": "index.js",
+  "scripts": {
+    "run": "",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sterling Jackson",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "lighthouse": "^3.0.3"
+  }
+}
